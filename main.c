@@ -2,5 +2,11 @@
 
 int main(void)
 {
-	blink(LED_BLUE);
+	while(1)
+	{
+		if(user_button()==1)
+			blink(LED_BLUE);
+		else 
+			;
+	}
 }

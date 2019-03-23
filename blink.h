@@ -8,5 +8,6 @@
 
 void blink(unsigned int led);
 void blink_count(unsigned int led, unsigned int count);
+int  user_button(void);
 
 #endif

@@ -6,11 +6,16 @@
 #define UINT32_1 ((uint32_t)1)
 
 #define REG(addr) (*((volatile uint32_t *)(addr)))
+//讀到這個地址的數值
 
 #define SET_BIT(addr, bit) (REG(addr) |= UINT32_1 << (bit))
 #define CLEAR_BIT(addr, bit) (REG(addr) &= ~(UINT32_1 << (bit)))
 
-// #define READ_BIT(addr, bit) ??????
+#define READ_BIT(addr, bit) (REG(addr) &= UINT32_1 << (bit))
+//  xxxxxx......y
+//  000000......1
+//&=000000......y
+//make read mask
 
 //RCC
 #define RCC_BASE 0x40023800
@@ -44,5 +49,9 @@
 #define GPIOx_BSRR_OFFSET 0x18
 #define BRy_BIT(y) ((y) + 16)
 #define BSy_BIT(y) (y)
+
+//Input Data Reg 
+#define GPIOx_IDR_OFFSET 0X10
+#define IDRy_BIT(y) (y)
 
 #endif

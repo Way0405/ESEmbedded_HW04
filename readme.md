@@ -43,5 +43,23 @@ This is the hw04 sample. Please follow the steps below.
 - [x] **If you volunteer to give the presentation (demo) next week, check this.**
 
 --------------------
+可以查出USER button的位址是PA0
+所以在blink.c內建立button_init()來初始化PA0
+(enalbe PORTA,設定MODE 為input(設成00), PUPDR)
+ps:因為是input,所以可以不設定OTYPER,OSPEEDR
 
-Take your note here if you want. (Optional)
+在reg.h內 define READ_BIT(addr, bit) (REG(addr) &= UINT32_1 << (bit))
+(說明
+輸入為xxxxxx......y
+     &000000......1
+結果為000000......y
+結果為000000......y
+若y為1則READ_BIT為1，反之亦然
+)
+
+(input會存到Input Data Reg)
+使用時就可以用if(READ_BIT(GPIO_BASE(GPIO_PORTA) + GPIOx_IDR_OFFSET, IDRy_BIT(0))==1)做判斷式
+(#define GPIOx_IDR_OFFSET 0X10)
+(#define IDRy_BIT(y) (y))
+
+
